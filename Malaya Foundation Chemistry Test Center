@@ -1,3 +1,4 @@
+I. General Chemistry
 1.Explain isotopes：
 ·Isotopes are atoms of the same element with the same number of protons but with different number of neutrons. 
 2.Explain Molarity and Molality：
@@ -24,11 +25,38 @@
 ·relative molecular mass
 11.An instrument used to measure the relative atomic mass, relative isotopic mass of elements or relative molecular mass of compound. This instrument generates ions from atom or molecules and measures their masses.
 ·mass spectrometer
-12.Gas molecules have negligible volume
-13.Molecules move continuously, randomly, straight lines. Collisions create gas pressure. 
-14.Collisions are elastic, no intermolecular force. 
-15.Average kinetic energy depends only on absolute temperature. 
-16.Peak = most probable speed
-17.Increase temperature → curve shifts right, shorter & broader, area unchanged. 
-18.Same temperature: light gas curve right, broader, higher most probable speed.
-19.Same temperature: all gases have same average kinetic energy. 
+
+
+II. State of Matter
+1.Gas molecules have negligible volume
+2.Molecules move continuously, randomly, straight lines. Collisions create gas pressure. 
+3.Collisions are elastic, no intermolecular force. 
+4.Average kinetic energy depends only on absolute temperature. 
+5.Peak = most probable speed
+6.Increase temperature → curve shifts right, shorter & broader, area unchanged. 
+7.Same temperature: light gas curve right, broader, higher most probable speed.
+8.Same temperature: all gases have same average kinetic energy. 
+9.Ideal gas and Real gas
+·Real gas molecules have intermolecular attractive forces, which reduce the force when moleculres hit the wall, leading to lower pressure.
+10.Under what conditions of temperature and pressure will a real gas behave most like an ideal gas
+·A real gas behave most like an ideal gas at high temperature and low pressure.
+11.A ballon filled with oxygen gas at constant pressure will expand when it is heated
+·When heated, the average kinetic energy of oxygen molecules increases. Molecules collide harder with the ballon wall. At constant pressure, volume increases.
+12. A gas will ideally at low pressure
+·At low temperature, gas molecules are far apart. The volume of gas particles is negligible compared to container volume, satisfying ideal gas assumption.
+
+
+III. Atomic Structure
+1. Explain the Bohr atomic model
+·Electrons orbit the nucleus in fixed, discrete circular energy levels (orbits) at specific distances from the nucleus.
+2. Two weaknesses of Bohr's Postulates by de Broglie and Heisenberg
+·de Broglie: Bohr treated electrons only as particles moving in solid circular paths,  ignoring Electrons wave properties.       
+·Heisenberg: Bohr's uncertainty principle states we cannot know the exact position and momentum of an electron at the same time.
+3. State Aufbau Principle
+·Electeons fill atomic orbitals in order of increasing orbital energy. Lower energy orbitals are occupied first before higher energy orbitals
+4. What is meant by degenerate orbital?
+·Degenerate orbitals are orbitals that have the same energy
+5. Name and explain the principle/rule that should be followed when arranging electrons in the degenerate orbitals
+·Hund's rule states that for degenerate orbitals, electrons occupy orbitals singly before pairing up in the same orbital
+6. Explain why Cu atom does not follow the regular arrangement of electrons in orbitals
+·The energy between 4s and 3d is small. But Cu can gains extra stability by forming a fully filled 3d subshell.
