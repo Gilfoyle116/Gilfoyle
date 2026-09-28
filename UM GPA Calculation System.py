@@ -22,10 +22,10 @@ def load_data():
 def save_data():
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         for c in courses:
-            f.write(f"{c['name']}, {c['score']}, {c['credit']}\n")
+            f.write(f"{c['name']}, {c['score']}, {c['credit']}")
 
 
-def scores_to_gpa(score):
+def score_to_gpa(score):
     if score >= 80:
         return 4.0
     elif score >= 70:
@@ -44,7 +44,7 @@ def calculate_gpa():
     total_score = 0
     total_credit = 0
     for c in courses:
-        g = scores_to_gpa(c['score'])
+        g = score_to_gpa(c['score'])
         total_score += g * c['credit']
         total_credit += c['credit']
     if total_credit == 0.0:
@@ -53,18 +53,36 @@ def calculate_gpa():
 
 
 def add_course():
-    name = input('Please enter a subject: ')
-    score = float(input('Please enter your scores: '))
-    credit = float(input('Please enter your credit: '))
+    name = input("Please enter a course to add: ")
+    score = float(input("Please enter your score: "))
+    credit = float(input("Please enter your credit: "))
 
     courses.append({
-        'name' : name,
+        'name' : name, 
         'score' : score,
         'credit' : credit
     })
 
     save_data()
-    print("Your scores have already saved")
+    print("Your score has already saved automatically")
+
+def delete_course():
+    if not courses:
+        print("No record can delete")
+        return
+    found = False
+    name = input("Please enter a course you want to delete: ")
+    for c in courses:
+        if c['name'] == name:
+            courses.remove(c)
+            save_data()
+            new_gpa = calculate_gpa()
+            print("Successfully delete the course")
+            print(f"Your new GPA is {new_gpa}")
+            found = True
+    if not found:
+        print("Unsuccessfully delete")
+
 
 def show_all():
     print("All GPA record: ")
@@ -72,29 +90,32 @@ def show_all():
         print("No record")
         return
     for idx, c in enumerate(courses, 1):
-        g = scores_to_gpa(c['score'])
-        print(f"{idx}.{c['name']} | scores: {c['score']} | credit: {c['credit']} | scores of one subject: {g}")
+        g = calculate_gpa()
+        print(f"{idx}.{c['name']} | score: {c['score']} | credit: {c['credit']} | score of one course: {g}")
     print(f"Current overall GPA: {calculate_gpa()}")
 
 
 def main():
     while True:
-        print("GPA control system")
+        print("GPA control system: ")
         print("1. Adding a course: ")
-        print("2. Checking your GPA: ")
-        print("3. Quit: ")
-        choices = input("Please enter numbers of functions: ")
+        print("2. Deleting a course: ")
+        print("3. Checking your GPA: ")
+        print("4. Quit")
+        choices = input("Please enter a number of functions: ")
 
         if choices == '1':
             add_course()
         elif choices == '2':
-            show_all()
+            delete_course()
         elif choices == '3':
-            print("Quit and all your GPA was saved")
+            show_all()
+        elif choices == '4':
+            print("Quit and your GPA was saved automatically")
             break
         else:
-            print("Error numbers")
+            print("Error number")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
