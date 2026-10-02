@@ -20,8 +20,8 @@ def save_words(words_dict):
             f.write(f"{en} : {cn}\n")
 
 def add_word():
-    en = input("Please enter a word: ")
-    cn = input("Please enter the explanation of this word: ")
+    en = input("Please enter a word: ").strip()
+    cn = input("Please enter the explanation of this word: ").strip()
     words = load_words()
     if en in words:
         print("This word already exists")
