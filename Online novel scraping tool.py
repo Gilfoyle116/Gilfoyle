@@ -34,6 +34,11 @@ def get_content(url, headers):
         print(content)
 
 
+        with open("novel_content.txt", 'w', encoding='utf-8') as f:
+        f.write(f'\n----------{content}----------')
+        f.write(content)
+        f.write('\n\n')
+
 
 def get_name(url, headers):
     data = requests.get(url, headers=headers)
