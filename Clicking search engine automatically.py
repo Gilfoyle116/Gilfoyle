@@ -1,0 +1,44 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import time
+
+
+opt = Options()
+
+service = Service(r"D:\py\chromedriver.exe")
+driver = webdriver.Chrome(service=service, options=opt)
+
+driver.get("https://www.sogou.com/")
+time.sleep(1)
+print("Web Title: ", driver.title)
+driver.save_screenshot("sogou.png")
+time.sleep(1)
+
+
+driver.maximize_window()
+time.sleep(1)
+
+url = driver.current_url
+print(url)
+time.sleep(1)
+
+page = driver.page_source
+print(page)
+time.sleep(1)
+
+box = driver.find_element(By.ID, "query")
+time.sleep(1)
+box.send_keys("Linus Torvalds")
+time.sleep(1)
+box.submit()
+time.sleep(1)
+
+
+driver.quit()
+time.sleep(1)
+
+
+
+
