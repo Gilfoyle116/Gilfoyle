@@ -28,16 +28,26 @@ def save_data():
 def score_to_gpa(score):
     if score >= 80:
         return 4.0
-    elif score >= 70:
+    elif score >= 75 and score <= 79.99:
         return 3.67
-    elif score >= 60:
+    elif score >= 70 and score <= 74.99:
         return 3.33
-    elif score >= 50:
+    elif score >= 65 and score <= 69.99:
         return 3.0
-    elif score >= 40:
+    elif score >= 60 and score <= 64.99:
         return 2.67
+    elif score >= 55 and score <= 59.99:
+        return 2.33
+    elif score >= 50 and score <= 54.99:
+        return 2.00
+    elif score >= 45 and score <= 49.99:
+        return 1.67
+    elif score >= 40 and score <= 44.99:
+        return 1.33
+    elif score >= 35 and score <= 39.99:
+        return 1.0
     else:
-        return 0.0
+        return 0
 
 
 def calculate_gpa():
