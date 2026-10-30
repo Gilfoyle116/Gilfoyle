@@ -10,6 +10,9 @@ opt = Options()
 service = Service(r"D:\py\chromedriver.exe")
 driver = webdriver.Chrome(service=service, options=opt)
 
+# implicit wait
+driver.implicitly_wait(10)
+
 driver.get("https://www.sogou.com/")
 time.sleep(1)
 print("Web Title: ", driver.title)
