@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
@@ -11,6 +13,10 @@ service = Service(r"D:\py\chromedriver.exe")
 driver = webdriver.Chrome(service=service, options=opt)
 
 driver.get("https://www.sogou.com/")
+
+# implicit wait     # until check if it is empty
+WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="mokuai_1_13"]/div[2]/a[1]/img')))
+
 time.sleep(1)
 print("Web Title: ", driver.title)
 driver.save_screenshot("sogou.png")
