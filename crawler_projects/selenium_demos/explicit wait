@@ -17,6 +17,9 @@ driver.get("https://www.sogou.com/")
 # implicit wait     # until check if it is empty
 WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="mokuai_1_13"]/div[2]/a[1]/img')))
 
+# verify whether the elements in the backgrounds have been clicked
+WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'stb')))
+
 time.sleep(1)
 print("Web Title: ", driver.title)
 driver.save_screenshot("sogou.png")
