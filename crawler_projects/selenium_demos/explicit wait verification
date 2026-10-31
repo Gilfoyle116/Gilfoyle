@@ -20,6 +20,14 @@ WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.XPATH, '//*
 # verify whether the elements in the backgrounds have been clicked
 WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'stb')))
 
+# verification pop-up window
+WebDriverWait(driver, 10).until(EC.alert_is_present())
+# switching window
+t = driver.switch_to.alert
+# clicking acceptance
+t.accept()
+
+
 time.sleep(1)
 print("Web Title: ", driver.title)
 driver.save_screenshot("sogou.png")
