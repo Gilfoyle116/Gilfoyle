@@ -3,7 +3,7 @@ import sqlite3
 # create database connection   conn is cursor
 conn = sqlite3.connect("novels1.db")
 
-# create cursor      cursor object is use to execute sql sentences
+# create cursor      cursor object is using to execute sql sentences
 cursor = conn.cursor()
 
 
