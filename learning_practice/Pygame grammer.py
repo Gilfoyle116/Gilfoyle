@@ -14,6 +14,10 @@ win = pygame.display.set_mode((800, 600))
 # Creating a game title
 pygame.display.set_caption("Pygame")
 
+# Adding some music
+mus = pygame.mixer.Sound("File_name")
+mus.play()
+
 
 # 2. Game loop and handling:
 
