@@ -11,31 +11,6 @@ win_h = 600
 win = pygame.display.set_mode((win_w, win_h), vsync=1)
 pygame.display.set_caption("Airplane flying and shooting")
 
-# Setting players
-player_w = 50
-player_h = 50
-player_x = win_w // 2 - player_w // 2
-player_y = win_h - player_h - 30
-player_speed = 8
-
-# Bullet magnitude
-bullet_w = 3
-bullet_h = 10
-bullet_speed = 12
-bullets = []
-
-# Enemy aircraft magnitude
-enemy_w = 50
-enemy_h = 50
-enemy_speed = 6
-enemies = []
-
-# The time for generating enemy aircraft
-# 1000ms = 1s
-enemy_spawn_time = 1000
-# Recording the initial time
-last_enemy_spawn_time = pygame.time.get_ticks()
-
 # Setting color
 white = (255, 255, 255)
 red = (255, 0, 0)
@@ -45,8 +20,33 @@ black = (0, 0, 0)
 yellow = (255, 255, 0)
 purple = (255, 0, 255)
 
-# Setting the color of plane
+# Setting players
+player_w = 50
+player_h = 50
+player_x = win_w // 2 - player_w // 2
+player_y = win_h - player_h - 30
+player_speed = 8
 player_color = green
+
+# Bullet magnitude
+bullet_w = 3
+bullet_h = 10
+bullet_speed = 12
+bullet_color = purple
+bullets = []
+
+# Enemy aircraft magnitude
+enemy_w = 50
+enemy_h = 50
+enemy_speed = 6
+enemy_color = black
+enemies = []
+
+# The time for generating enemy aircraft
+# 1000ms = 1s
+enemy_spawn_time = 1000
+# Recording the initial time
+last_enemy_spawn_time = pygame.time.get_ticks()
 
 # Controlling the frame rate of the game
 clock = pygame.time.Clock()
@@ -78,10 +78,10 @@ while running:
             if event.button == 1:
                 player_rect = pygame.Rect(player_x, player_y, player_w, player_h)
                 if player_rect.collidepoint(event.pos):
-                    if player_color == blue:
-                        player_color = green
+                    if player_color == green:
+                        player_color = yellow
                     else:
-                        player_color = blue
+                        player_color = green
 
     # Getting keyboard status
     keys = pygame.key.get_pressed()
@@ -157,11 +157,11 @@ while running:
     # Creating bullets
     for bullet in bullets:
         # bullet is the x-coordinate and y-coordinate in bullets
-        pygame.draw.rect(win, purple, (bullet[0], bullet[1], bullet_w, bullet_h))
+        pygame.draw.rect(win, bullet_color, (bullet[0], bullet[1], bullet_w, bullet_h))
 
     # Drawing enemies
     for enemy in enemies:
-        pygame.draw.rect(win, black, (enemy[0], enemy[1], enemy_w, enemy_h))
+        pygame.draw.rect(win, enemy_color, (enemy[0], enemy[1], enemy_w, enemy_h))
 
     # Refresh screen
     pygame.display.flip()
