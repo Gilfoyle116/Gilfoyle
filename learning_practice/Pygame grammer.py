@@ -50,7 +50,7 @@ clock = pygame.time.Clock()
 
 # 3. Game loop and handling:
 
-# Main loop
+# 3.1 Main loop
 running = True
 while running:
     # Setting the background color
@@ -64,6 +64,12 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
+
+    # 3.2 Did the mouse click inside this rectangle
+    player_rect.collidepoint(event.pos)
+
+    # 3.3 Did these two rectangles collide with each other
+    bullet_rect.colliderect(enemy_rect)
 
 
     # 4. Drawing graphics and text:
