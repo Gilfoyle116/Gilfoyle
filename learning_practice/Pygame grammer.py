@@ -39,6 +39,14 @@ player_img = pygame.image.load("me1.png").convert_alpha()
 # 2.4 Obtaining the actual size of the image# Obtaining the actual size of the image
 player_w, player_h = player_img.get_size() 
 
+# 2.5 The time for generating enemy aircraft
+# 1000ms = 1s
+enemy_spawn_time = 1000
+# Recording the initial time
+last_enemy_spawn_time = pygame.time.get_ticks()
+
+# 2.6 Controlling the frame rate of the game
+clock = pygame.time.Clock()
 
 # 3. Game loop and handling:
 
