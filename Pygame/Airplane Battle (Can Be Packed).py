@@ -3,6 +3,9 @@ import random
 import sys
 import os
 
+from pygame.constants import MOUSEBUTTONDOWN
+
+
 def resource_path(relative_path):
     # Checking whether the object has a certain attribute
     if hasattr(sys, '_MEIPASS'):
@@ -34,8 +37,12 @@ bg_img = pygame.transform.scale(bg_img, (win_w, win_h))
 
 # Loading the game background information
 player_img = pygame.image.load(resource_path("me1.png")).convert_alpha()
+player_img2 = pygame.image.load(resource_path("me2.png")).convert_alpha()
 enemy_img = pygame.image.load(resource_path("enemy1.png")).convert_alpha()
 bullet_img = pygame.image.load(resource_path("bullet1.png")).convert_alpha()
+
+# Current aircraft image
+current_player_img = player_img
 
 # Obtaining the actual size of the image
 player_w, player_h = player_img.get_size()
@@ -74,6 +81,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
@@ -84,6 +92,15 @@ while running:
                 # bullet's y-coordinate equal to player's y-coordinate
                 bullet_y = player_y
                 bullets.append([bullet_x, bullet_y])
+                
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                player_rect = pygame.Rect(player_x, player_y, player_w, player_h)
+                if player_rect.collidepoint(event.pos):
+                    if current_player_img == player_img:
+                        current_player_img = player_img2
+                    else:
+                        current_player_img = player_img
 
     # Getting keyboard status
     keys = pygame.key.get_pressed()
@@ -155,7 +172,7 @@ while running:
     enemies = [enemies[j] for j in range(len(enemies)) if j not in hit_enemies]
 
     # Drawing player image
-    win.blit(player_img, (player_x, player_y))
+    win.blit(current_player_img, (player_x, player_y))
 
     # Drawing bullet images
     for bullet in bullets:
