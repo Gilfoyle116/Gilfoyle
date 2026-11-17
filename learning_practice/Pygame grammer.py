@@ -32,8 +32,6 @@ bg_img = pygame.transform.scale(bg_img, (win_w, win_h))
 # 2.3 Loading the game background information
 # Loading the game background information
 player_img = pygame.image.load("me1.png").convert_alpha() 
-# convert_alpha() is used for images with transparent backgrounds
-enemy_img = pygame.image.load("enemy1.png").convert_alpha() 
 
 # 2.4 Obtaining the actual size of the image# Obtaining the actual size of the image
 player_w, player_h = player_img.get_size() 
