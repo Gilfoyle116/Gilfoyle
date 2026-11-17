@@ -4,8 +4,11 @@ import sys
 import os
 
 def resource_path(relative_path):
+    # Checking whether the object has a certain attribute
     if hasattr(sys, '_MEIPASS'):
+        # If running as a packaged .exe, files are extracted to a temporary folder. Look there.
         return os.path.join(sys._MEIPASS, relative_path)
+    # If running normally in PyCharm, just look in the current project folder.
     return os.path.join(os.path.abspath("."), relative_path)
 
 pygame.init()
@@ -168,3 +171,16 @@ while running:
     clock.tick(60)
 
 pygame.quit()
+
+
+
+# How to Pack (PyInstaller Packaging Commands)
+
+# 1. With pictures and music, packaged as a single.exe file
+# input: pyinstaller -F -w --add-data "*.png;." --add-data "*.wav;." filename of code.py
+
+# 2. With pictures and music, all bundled into one large folder.
+# input: pyinstaller -w --add-data "*.png;." --add-data "*.wav;." filename of code.py
+
+# 3. Pure code, without external materials
+# input: pyinstaller -F -w filename of code.py
