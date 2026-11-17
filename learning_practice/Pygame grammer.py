@@ -5,25 +5,41 @@ import pygame
 
 # 1. Setting up a game window:
 
-# Initialization
+# 1.1 Initialization
 pygame.init()
 
-# Creating a game window
+# 1.2 Creating a game window
 win = pygame.display.set_mode((800, 600))
 
-# Creating a game title
+# 1.3 Creating a game title
 pygame.display.set_caption("Pygame")
 
-# Sound effect channel (Can hold multiple at the same time)
-mus = pygame.mixer.Sound("File_name")
-mus.play()
 
-# A separate background music channel
-pygame.mixer.music.load("File_name")
-pygame.mixer.music.play(-1)
+# 2. Setting game background
+
+# 2.1 Setting music
+# Setting music
+pygame.mixer.music.load("bgm.wav") 
+# Load the music file into memory
+pygame.mixer.music.play(-1)        
+
+# 2.2 Setting background photo
+# Setting background photo
+bg_img = pygame.image.load("background.png") 
+# Load the image file into memory
+bg_img = pygame.transform.scale(bg_img, (win_w, win_h)) 
+
+# 2.3 Loading the game background information
+# Loading the game background information
+player_img = pygame.image.load("me1.png").convert_alpha() 
+# convert_alpha() is used for images with transparent backgrounds
+enemy_img = pygame.image.load("enemy1.png").convert_alpha() 
+
+# 2.4 Obtaining the actual size of the image# Obtaining the actual size of the image
+player_w, player_h = player_img.get_size() 
 
 
-# 2. Game loop and handling:
+# 3. Game loop and handling:
 
 # Main loop
 running = True
@@ -41,10 +57,11 @@ while running:
                 running = False
 
 
-    # 3. Drawing graphics and text:
+    # 4. Drawing graphics and text:
     red = (255, 0, 0)
     # Draw shapes      pygame.Rect(x, y, w, h)
-    pygame.draw.rect(win, red, pygame.Rect(100, 50, 80, 60))
+    pygame.draw.rect(win, red, (100, 50, 80, 60))
+    win.blit(player_img, (player_x, player_y)) 
     # Refresh the interface    update(part of screen); flip(whole screen)
     pygame.display.flip()
     # Refresh frame rate
