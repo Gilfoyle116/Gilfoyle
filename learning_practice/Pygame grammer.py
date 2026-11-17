@@ -14,6 +14,9 @@ win = pygame.display.set_mode((800, 600))
 # 1.3 Creating a game title
 pygame.display.set_caption("Pygame")
 
+# 1.4 Turning off the system typing mode
+pygame.key.stop_text_input()
+
 
 # 2. Setting game background
 
