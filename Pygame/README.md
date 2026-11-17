@@ -2,17 +2,22 @@
 
 A personal repository dedicated to learning and practicing Pygame game development.
 
-## 📂 Contents
-*   `Pygame_Demo.py`: A basic demo featuring window creation, an event loop, and WASD keyboard controls to move a rectangle.
+## 📁 Contents
+
+- `Pygame_Demo.py`: A basic demo featuring window creation, an event loop, and WASD keyboard controls to move a rectangle.
+- `The Complete Version of Airplane Battle.py`: A fully playable 2D arcade airplane shooting game with sprites, background music, and collision detection.
 
 ## 🛠️ Prerequisites
-*   Python 3.x
-*   Pygame (Install via: `pip install pygame`)
+
+- Python 3.x
+- Pygame (Install via: `pip install pygame`)
 
 ## 🚀 How to Run
-Make sure Python and Pygame are installed. 
-Run the following command in your terminal:
-```bash
+
+Make sure Python and Pygame are installed. Run the following commands in your terminal:
+
+**To run the basic demo:**
+bash
 python Pygame_Demo.py
 
 ## 📁 Game Assets
