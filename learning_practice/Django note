@@ -1,27 +1,19 @@
-I. Environment & Project Setup
-1. Create a Django project. Django auto-generates core files: `manage.py`, `settings.py`, `urls.py`, `views.py`.
-2. Activate Python virtual environment and confirm Django is installed. Configure PyCharm run configuration with `runserver` command.
-3. Fix port conflict: Use `netstat -ano | findstr ":8000"` to get PID of occupying process. Kill process with `taskkill /F /PID [PID]`. Alternative: start server on another port `runserver 127.0.0.1:8001`.
-4. Browser cache tip: Press `Ctrl + F5` for hard refresh after code changes, to avoid loading cached old page.
+1. manage.py is Django’s command-line tool.
+- Start dev server: `python manage.py runserver` (default port 8000)
+- Custom port: `python manage.py runserver 0.0.0.0:8080`
+- Generate migration files: `python manage.py makemigrations`
+- Apply migrations to database: `python manage.py migrate`
+- Create admin superuser: `python manage.py createsuperuser`
 
-II. URL Route & Basic View
-1. urls.py (URL config): Use path(url_string, view_function) to map web address to handler function.
-2. View functions are defined in views.py. Every view takes one required argument request, which represents the HTTP request from user.
-3. First response method: HttpResponse("content"). Return plain text, simple HTML tags like <h1> are supported.
-4. Workflow for adding a new page: ① Define view function in views.py; ② Add a new path entry to urlpatterns.
 
-III. 
-1. Create a folder named templates at project root to store .html files. templates is Django’s default template directory name.
-2. Use render(request, "template_name.html") inside view function to load HTML file. Need import statement: from django.shortcuts import render.
-3. Basic HTML tags:
-   - <h1> ~ <h6>: heading tags, h1 is largest, size decreases from h1 to h6
-   - <p>: paragraph tag
-   - <div>: block-level container, takes full width on new line, no default style
-   - <span>: inline container, stays in same line, no default font size
-4. HTML structure: Standard skeleton <!DOCTYPE html> <html> <head> <body>. Meta info and page title go inside <head>, visible content inside <body>.
+2. Add new route in urls.py
+- First argument: url path
+- Second argument: bind to view function
+- `name`: optional alias for this route
 
-IV. Server Start & Access Flow
-1. Start dev server: Run configuration in PyCharm, equivalent to python manage.py runserver.
-2. Server is ready when console prints Starting development server at http://127.0.0.1:8000/.
-3. Visit http://127.0.0.1:8000/xxx/ in browser. Django matches the path string against entries in urlpatterns. If matched, run the corresponding view function.
-4. The view returns content, browser renders and shows the page.
+
+3. Write view function
+- Write view function in views.py
+- Add path entry in urlpatterns
+- Put html file under templates folder
+- Run server and test in browser
