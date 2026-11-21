@@ -50,6 +50,7 @@ plt.savefig("my_plot.png", dpi=300)
 # Show chart (will pop up a window if running in a terminal)
 plt.show()
 
+
 # 5. Create Subplots (drawing multiple small charts in one figure)
 # fig is the entire canvas, axes is an array containing subplot objects
 # 1 row, 2 columns
