@@ -1,117 +1,92 @@
 import torch
 
-# 1. 创建张量(Tensor Creation)
-# 1.1 从列表生成
+# 1. Tensor Creation (Similar to NumPy)
+# 1.1 Create from lists
 tensor_1d = torch.tensor([1, 2, 3, 4])
 tensor_2d = torch.tensor([[1, 2], [3, 4]])
 
-# 1.2 特殊张量
-# 2行3列全0
+
+# 1.2 Special Tensors
+# 2x3 tensor of zeros
 zeros_t = torch.zeros((2, 3))
-# print(zeros_t)
-# 全1
+# Tensor of ones
 ones_t = torch.ones((2, 3))
-# print(ones_t)
-# 全部填充5
+# Tensor filled with 5
 full_t = torch.full((2, 3), 5)
-# print(full_t)
-# 3阶单位矩阵
+# 3x3 Identity matrix
 eye_t = torch.eye(3)
-# print(eye_t)
-# 起步、终点、步长(注意: PyTorch的步长必须是整数)
+# Start, stop, step (Note: step must be an integer in PyTorch)
 arange_t = torch.arange(0, 10, 2)
-# print(arange_t)
-# 0-1均匀生成5个点
+# 5 evenly spaced points between 0 and 1
 linspace_t = torch.linspace(0, 1, 5)
-# print(linspace_t)
-# [0, 1)均匀随机(生成3行4列)
+# Uniform random in [0, 1)
 rand_t = torch.rand(3, 4)
-# print(rand_t)
-# 标准正态随机
+# Standard normal random
 randn_t = torch.randn(3, 4)
-# print(randn_t)
 
 
-# 2. 形状与变形(Shape and Reshaping)
-print("tensor_1d 形状:", tensor_1d.shape)
-print("tensor_1d 维度:", tensor_1d.dim())
-print("tensor_1d 元素总数:", tensor_1d.numel())
+# 2. Shape and Reshaping
+print("tensor_1d shape:", tensor_1d.shape)
+print("tensor_1d dim:", tensor_1d.dim())     # dimension
+print("tensor_1d numel:", tensor_1d.numel()) # number of elements
 
-# reshape vs view: view() 要求张量在内存中连续, reshape() 更灵活
+# reshape vs view: view() requires contiguous memory, reshape() is more flexible
 reshape_t = tensor_2d.reshape(4, 1)
 view_t = tensor_2d.view(4, 1)
-# 摊平成一堆
 flat_t = tensor_2d.flatten()
 
 
-# 3. 索引与切片 (Indexing and Slicing)
-# 提取单个元素 (返回0维张量)
+# 3. Indexing and Slicing
+# Extract a single element (returns a 0-dim tensor)
 val1 = tensor_1d[0]
-# print(val1)
-# 一维切片
+# 1D slicing
 slice_t = tensor_1d[1:3]
-# print(slice_t)
-# 二维张量定位 (第0行第1列)
+# 2D tensor element access (row 0, col 1)
 val2 = tensor_2d[0, 1]
-# print(val2)
-# 二维张量切片 (所有行, 第0列)
+# 2D tensor slicing (all rows, col 0)
 col0 = tensor_2d[:, 0]
-# print(col0)
-# 布尔索引 / 条件筛选
+# Boolean indexing / Conditional filtering
 mask_t = tensor_1d[tensor_1d > 2]
-# print(mask_t)
 
 
-# 4. 数学运算
+# 4. Mathematical Operations
 t_plus = tensor_1d + 1
-# print(t_plus)
-# 对应位置元素相加
+# Element-wise addition
 t_add = tensor_1d + tensor_1d
-# print(t_add)
 sum_val = torch.sum(tensor_1d)
-# print(sum_val)
-# 求平均值 (注意: 必须转为浮点数才能求平均值)
-mean_val = torch.mean(tensor_1d.float())
-# print(mean_val)
-max_val = torch.max(tensor_1d).values
+mean_val = torch.mean(tensor_1d.float()) # Mean requires float type
+# Note: torch.max() returns a namedtuple (values, indices)
+max_val = torch.max(tensor_1d).values 
 min_val = torch.min(tensor_1d).values
-# 求平方根 / 正弦
 sqrt_t = torch.sqrt(tensor_1d.float())
 sin_t = torch.sin(tensor_1d.float())
-# 求标准差
 std_val = torch.std(tensor_1d.float())
-# print(std_val)
 
-# 矩阵乘法(注: '*'是逐元素乘, '@'或torch.matmul()才是矩阵乘法)
-dot_val = torch.matmul(tensor_2d, tensor_2d)
-# print(dot_val)
+# Matrix Multiplication (Dot product)
+# Note: '*' is element-wise multiplication, use '@' or torch.matmul() for matrix multiplication
+dot_val = torch.matmul(tensor_2d, tensor_2d) 
 dot_val_short = tensor_2d @ tensor_2d
-# print(dot_val_short)
 
 
-# 5. 张量拼接与堆叠 (Concatenation and Stacking)
-# 垂直拼接 (沿着维度0上下文拼接)
+# 5. Tensor Concatenation and Stacking
+# Vertical concatenation (along dimension 0, like np.concatenate)
 concat_v = torch.cat([tensor_2d, tensor_2d], dim=0)
-# print(concat_v)
-# 水平拼接 (沿着维度1左右拼接)
+# Horizontal concatenation (along dimension 1)
 concat_h = torch.cat([tensor_2d, tensor_2d], dim=1)
-# print(concat_h)
-# 堆叠 (注意: stack会增加一个新的维度, 这里会变成三位张量)
+# Stacking: creates a NEW dimension (results in a 3D tensor here)
 stack_t = torch.stack([tensor_2d, tensor_2d], dim=0)
-# print(stack_t)
 
 
-# 6. PyTorch核心特性: 设备管理与自动求导 (Device & Autograd)
-# 6.1 设备管理 (CPU vs GPU)
-device = 'cuda' if torch.cuda.is_available() else "cpu"
+# 6. PyTorch Specifics: Device & Autograd (Core Features)
+# 6.1 Device Management (CPU vs GPU)
+device = "cuda" if torch.cuda.is_available() else "cpu"
 tensor_gpu = tensor_1d.to(device)
-print(f"当前使用的设备: {device}")
+print(f"Current device: {device}")
 
-# 6.2 自动求导 (Autograd)
-# requires_grad=True 告诉PyTorch追踪该张量上的所有运算, 用于计算梯度
+# 6.2 Automatic Differentiation (Autograd)
+# requires_grad=True tells PyTorch to track operations on this tensor
 x = torch.tensor([2.0, 3.0], requires_grad=True)
 y = x ** 2 + 2 * x
-# 反向传播求梯度 (相当于求导 dy / dx)
-y.sum().backward()
-# 打印梯度 (数学原理: y = x ^ 2 + 2x的导数2x+2)
-print("梯度 x.grad:", x.grad)
+# Compute gradients (dy/dx) using backpropagation
+y.sum().backward() 
+print("Gradient (dy/dx):", x.grad) # Output will be [6.0, 8.0] (since 2x+2)
